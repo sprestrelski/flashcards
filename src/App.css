@@ -52,7 +52,7 @@
   padding-right: 20px;
   padding-bottom: 20px;
   margin: auto;
-  width: 400px;
+  min-width: 400px;
   min-height: 200px;
   display: flex;
   justify-content: center;
@@ -71,4 +71,16 @@ body {
 .button {
   padding: 100px;
   
+}
+
+#algorithm {
+  background-color: #46864cd9;
+}
+
+#proof {
+  background-color: rgb(52, 116, 165);
+}
+
+#runtime {
+  background-color: rgb(128, 49, 128);
 }
