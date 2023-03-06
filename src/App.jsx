@@ -9,7 +9,7 @@ const App = () => {
       ans: "O(V+E)",
       type: "runtime",
       hasImage: true,
-      image: "/BFS.png",
+      image: "public/BFS.png"
     },
     {
       id: 1,
@@ -17,7 +17,7 @@ const App = () => {
       ans: "O(V+E)",
       type: "runtime",
       hasImage: true,
-      image: "/DFS.png",
+      image: "public/DFS.png",
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ const App = () => {
       ans: "1. Break problem into pieces\n2. Solve pieces recursively\n3. Recombine pieces to get answer",
       type: "algorithm",
       hasImage: true,
-      image: "/DCMergeSort.png",
+      image: "public/DCMergeSort.png",
     },
     {
       id: 4,
@@ -68,7 +68,7 @@ const App = () => {
       ans: "1. Break problem into smaller subproblems\n2. Find a recursive formula solving one subproblem in terms of simpler ones\n3. Tabulate answers and solve all subproblems\n",
       type: "algorithm",
       hasImage: true,
-      image: "/DPKnapsackExample.png",
+      image: "public/DPKnapsackExample.png",
     },
     {
       id: 9,
