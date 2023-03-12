@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from 'react';
 
 const App = () => {
-  const cards = [
+  const [cards, setCards] = useState([
     {
       id: 0,
       ques: "What is the runtime of breadth first search (BFS)?",
@@ -77,28 +77,70 @@ const App = () => {
       type: "proof",
       hasImage: false,
     }
-  ];
+  ]);
 
 
   const [cardText, setText] = useState(cards[0]);
   const [cardAnswer, setAnswer] = useState(false);
-  
+  const [cardID, setID] = useState(0);
+  const [prevDisabled, setPrevDisabled] = useState(false);
+  const [nextDisabled, setNextDisabled] = useState(false);
+
   const clickCard = () => {
     setAnswer(!cardAnswer);
   }
 
+  const prevCard = () => {
+    if (cardID == 1) {
+      setPrevDisabled(true);
+    }
+    if (cardID > 0) {
+      setID(cardID - 1);
+      setText(cards[cardID-1]);
+      setAnswer(false);
+      setNextDisabled(false);
+    } 
+    
+  }
+
   const nextCard = () => {
-    const randInt = Math.floor(Math.random() * cards.length);
-    setText(cards[randInt]);
+    //const randInt = Math.floor(Math.random() * cards.length);
+    if (cardID == cards.length - 1) {
+      setNextDisabled(true);
+    }
+    if (cardID < cards.length - 1) {
+      setID(cardID + 1);
+      setText(cards[cardID+1]);
+      setAnswer(false);
+      setPrevDisabled(false);
+    }
+  }
+ 
+  // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  const shuffleCards = () => {
+    let currentIndex = cards.length, randomIndex;
+
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [cards[currentIndex], cards[randomIndex]] = [
+        cards[randomIndex], cards[currentIndex]];
+    }
+    setCards(cards);
+    setText(cards[0]);
+    setID(0);
     setAnswer(false);
+    setPrevDisabled(true);
+    setNextDisabled(false);
   }
 
   return (
     <div className="App">
       <div className="header">
-        <h1>your algorithms study buddy</h1>
+        <h1>algorithms flashcards</h1>
         <p>how well do you know algorithms? what about their runtime? test your knowledge here!</p>
-        <p>total number of cards: {cards.length}</p>
+        <p>total number of cards: {cards.length - cardID}</p>
       </div>
       <div className="container">
         <div className="card" onClick={clickCard} id={cardText.type}>
@@ -112,7 +154,9 @@ const App = () => {
       }
       </div>
       <div className="container">
-        <button onClick={nextCard}>next</button>
+        <button class="prev-button" onClick={prevCard} disabled={prevDisabled}>back</button>
+        <button class="next-button" onClick={nextCard} disabled={nextDisabled}>next</button>
+        <button onClick={shuffleCards}>shuffle</button>
       </div>
     </div>
   )

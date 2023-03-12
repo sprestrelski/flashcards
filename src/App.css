@@ -5,36 +5,8 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.read-the-docs {
-  color: #888;
+.header {
+  vertical-align: top;
 }
 
 .container {
@@ -53,6 +25,7 @@
   padding-bottom: 20px;
   margin: auto;
   min-width: 400px;
+  max-width: 600px;
   min-height: 200px;
   display: flex;
   justify-content: center;
@@ -68,11 +41,6 @@ body {
   min-height: 100vh;
 }
 
-.button {
-  padding: 100px;
-  
-}
-
 #algorithm {
   background-color: #46864cd9;
 }
@@ -83,4 +51,13 @@ body {
 
 #runtime {
   background-color: rgb(128, 49, 128);
+}
+
+.prev-button:disabled {
+  color: rgb(100, 100, 100);
+  background-color: black;
+}
+.next-button:disabled {
+  color: rgb(100, 100, 100);
+  background-color: black;
 }
