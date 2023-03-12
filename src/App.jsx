@@ -79,17 +79,26 @@ const App = () => {
     }
   ]);
 
-
+  // keep track of current cards
   const [cardText, setText] = useState(cards[0]);
   const [cardAnswer, setAnswer] = useState(false);
   const [cardID, setID] = useState(0);
+
+  // handle button input
   const [prevDisabled, setPrevDisabled] = useState(false);
   const [nextDisabled, setNextDisabled] = useState(false);
 
+  // handle user input
+  const [correctAns, setCheckAns] = useState("");
+  const [submittedAns, setSubmittedAns] = useState("");
+  const [streak, setStreak] = useState(0);
+
+  // flip between question and answer
   const clickCard = () => {
     setAnswer(!cardAnswer);
   }
 
+  // get previous card, disable when reaching the first one
   const prevCard = () => {
     if (cardID == 1) {
       setPrevDisabled(true);
@@ -99,10 +108,13 @@ const App = () => {
       setText(cards[cardID-1]);
       setAnswer(false);
       setNextDisabled(false);
+      setSubmittedAns("");
+      setCheckAns("");
     } 
     
   }
 
+  // get next card, disable when no more cards left
   const nextCard = () => {
     //const randInt = Math.floor(Math.random() * cards.length);
     if (cardID == cards.length - 1) {
@@ -113,6 +125,8 @@ const App = () => {
       setText(cards[cardID+1]);
       setAnswer(false);
       setPrevDisabled(false);
+      setSubmittedAns("");
+      setCheckAns("");
     }
   }
  
@@ -120,6 +134,7 @@ const App = () => {
   const shuffleCards = () => {
     let currentIndex = cards.length, randomIndex;
 
+    // shuffle alg
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
@@ -127,6 +142,8 @@ const App = () => {
       [cards[currentIndex], cards[randomIndex]] = [
         cards[randomIndex], cards[currentIndex]];
     }
+
+    // reset indexes and vars to first newly shuffled card 
     setCards(cards);
     setText(cards[0]);
     setID(0);
@@ -134,6 +151,17 @@ const App = () => {
     setPrevDisabled(true);
     setNextDisabled(false);
   }
+
+  const onGuessAns = (e) => {
+    e.preventDefault();
+
+    if (submittedAns === cards[cardID].ans 
+      || (cards[cardID].ans.includes(submittedAns) 
+         && submittedAns.length >= 8)) {
+      setCheckAns("correct");
+    } else setCheckAns("wrong");
+  }
+
 
   return (
     <div className="App">
@@ -152,6 +180,18 @@ const App = () => {
       {cardText.hasImage && cardAnswer && 
           <img src={cardText.image} width="450px"/>
       }
+      </div>
+
+      <div className="container">
+        <input
+            type="text"
+            class={correctAns}
+            value={submittedAns}
+            name="guessAns"
+            placeholder="guess here!"
+            onChange={(e) => setSubmittedAns(e.target.value)}
+          />
+        <button class="submit-button" type="submit" onClick={onGuessAns} disabled={cardAnswer}>submit guess</button>
       </div>
       <div className="container">
         <button class="prev-button" onClick={prevCard} disabled={prevDisabled}>back</button>
