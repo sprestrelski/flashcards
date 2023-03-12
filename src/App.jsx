@@ -92,6 +92,7 @@ const App = () => {
   const [correctAns, setCheckAns] = useState("");
   const [submittedAns, setSubmittedAns] = useState("");
   const [streak, setStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
 
   // flip between question and answer
   const clickCard = () => {
@@ -155,11 +156,19 @@ const App = () => {
   const onGuessAns = (e) => {
     e.preventDefault();
 
-    if (submittedAns === cards[cardID].ans 
-      || (cards[cardID].ans.includes(submittedAns) 
-         && submittedAns.length >= 8)) {
+    if (submittedAns.toLowerCase === cards[cardID].ans.toLowerCase 
+        || (cards[cardID].ans.toLowerCase.includes(submittedAns.toLowerCase) 
+        && submittedAns.length >= 8)) {
       setCheckAns("correct");
-    } else setCheckAns("wrong");
+      setStreak(streak + 1);
+      setAnswer(true);
+      if ( (streak + 1) > longestStreak) {
+        setLongestStreak(streak + 1);
+      }
+    } else {
+      setCheckAns("wrong");
+      setStreak(0);
+    }
   }
 
 
@@ -169,6 +178,7 @@ const App = () => {
         <h1>algorithms flashcards</h1>
         <p>how well do you know algorithms? what about their runtime? test your knowledge here!</p>
         <p>total number of cards: {cards.length - cardID}</p>
+        <p>current streak: {streak}, longest streak: {longestStreak}</p>
       </div>
       <div className="container">
         <div className="card" onClick={clickCard} id={cardText.type}>
