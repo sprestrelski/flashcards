@@ -31,6 +31,40 @@ Here's a walkthrough of implemented required features:
 
 GIF created with ezgif.
 
+
+# Web Development Project 3 - Flashcards
+
+Submitted by: Samantha Prestrelski
+
+This web app: Need to brush up on your algorithms? Use this study buddy to practice algorithms, proof of correctness outlines, and runtime.
+
+Time spent: 4 hours spent in total
+
+## Required Features
+
+The following **required** functionality is completed:
+
+- [X] **The user can enter their guess in a box before seeing the flipside of the card**
+- [X] **Clicking on a submit button shows visual feedback about whether the answer was correct or incorrect**
+- [X] **A back button is displayed on the card and can be used to return to the previous card in a set sequence**
+- [X] **A next button is displayed on the card and can be used to navigate to the next card in a set sequence**
+
+The following **optional** features are implemented:
+
+- [X] A shuffle button is used to randomize the order of the cards
+- [X] A user's answer may be counted as correct even when it is slightly different from the target answer
+  - A user only needs to partially guess the answer
+- [X] A counter displays the user's current and longest streak of correct responses
+- [ ] A user can mark a card that they have mastered and have it removed from the pool of answers as well as added to a list of mastered cards
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://github.com/sprestrelski/flashcards/blob/main/flashcardswk3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with ezgif.
+
 ## License
 
     Copyright 2023 Samantha Prestrelski

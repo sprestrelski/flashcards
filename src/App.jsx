@@ -156,9 +156,9 @@ const App = () => {
   const onGuessAns = (e) => {
     e.preventDefault();
 
-    if (submittedAns.toLowerCase === cards[cardID].ans.toLowerCase 
-        || (cards[cardID].ans.toLowerCase.includes(submittedAns.toLowerCase) 
-        && submittedAns.length >= 8)) {
+    if (submittedAns === cards[cardID].ans 
+      || (cards[cardID].ans.includes(submittedAns) 
+      && submittedAns.length >= 8)) {
       setCheckAns("correct");
       setStreak(streak + 1);
       setAnswer(true);
